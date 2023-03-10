@@ -573,3 +573,80 @@ console.log("factorial====>", factorial(4));
 console.log("factorial====>", factorial(10));
 
 factorialT(4);
+
+const countCharaters = (str) => {
+  let obj = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+
+    if (obj[char] === undefined) {
+      obj[char] = 1;
+    } else {
+      obj[char]++;
+    }
+  }
+  for (let key in obj) {
+    console.log(key, "===>", obj[key]);
+  }
+};
+
+countCharaters("masai");
+
+const armstrongNumber = (n) => {
+  let temp = n;
+  let sum = 0;
+
+  while (n > 0) {
+    sum += (n % 10) ** 3;
+
+    n = Math.floor(n / 10);
+  }
+
+  return sum === temp;
+};
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let middle = Math.floor((left + right) / 2);
+
+    if (arr[middle] === target) {
+      return middle;
+    } else if (arr[middle] < target) {
+      left = middle + 1;
+    } else if (arr[middle] > target) {
+      right = middle - 1;
+    }
+  }
+
+  return -1;
+};
+
+console.log("Binary search====>", binarySearch([1, 2, 3, 4, 5], 1));
+console.log("Armstrong Number====>", armstrongNumber(153));
+
+const seieveOfErasthenus = (n) => {
+  let prime = new Array(n + 1).fill(true);
+
+  prime[0] = false;
+  prime[1] = false;
+
+  for (let i = 2; i < Math.sqrt(n); i++) {
+    if (prime[i]) {
+      for (let j = i * i; j <= n; j = j + i) {
+        prime[j] = false;
+      }
+    }
+  }
+
+  for (let i = 0; i < prime.length; i++) {
+    if (prime[i]) {
+      console.log(i);
+    }
+  }
+};
+
+seieveOfErasthenus(3);
